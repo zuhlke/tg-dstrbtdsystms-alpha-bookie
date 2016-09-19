@@ -1,5 +1,3 @@
-pragma solidity ^0.4.2;
-
 contract Book {
     struct Bet {
         address bettor;
@@ -18,7 +16,7 @@ contract Book {
         //possibleOutcomes = outcomes;
     }
 
-    function bet(bytes32 outcome) payable {
+    function bet(bytes32 outcome) {
         bets.push(Bet(msg.sender, msg.value, outcome));
         amountsByOutcome[outcome] += msg.value; // TODO is 0 the default value?
         potSize += msg.value;
