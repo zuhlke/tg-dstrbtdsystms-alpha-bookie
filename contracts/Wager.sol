@@ -21,6 +21,10 @@ contract Wager {
         betsDefined = 0;
     }
 
+    function _bookmaker() constant returns (address _bookmaker) {
+        return bookmaker;
+    }
+
     function validateBet (address sender) private constant returns (uint8 status) {
         if (msg.sender != bookmaker) {
             return 1;

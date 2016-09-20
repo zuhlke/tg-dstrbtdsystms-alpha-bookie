@@ -23,14 +23,26 @@ contract Book {
     }
 
     function setResult(bytes32 outcome) {
-        if (msg.sender != bookmaker) throw;
+        if(msg.sender != bookmaker) throw;
         
-        for (uint i = 0; i < bets.length; i++) {
+        for(uint i = 0; i < bets.length; i++) {
             Bet bet = bets[i];
-            if (bet.bettingOn == outcome) {
+            if(bet.bettingOn == outcome) {
                 uint amount = potSize * bet.amount / amountsByOutcome[outcome];
-                bet.bettor.send(amount);
+                if(!bet.bettor.send (amount)) {
+                    throw;
+                }
             }
         }
+    }
+
+    function terminate() {
+        if(msg.sender == bookmaker) {
+            suicide(bookmaker);
+        }
+    }   
+    
+    function() {
+        throw; // prevents accidental accumulation of ether
     }
 }

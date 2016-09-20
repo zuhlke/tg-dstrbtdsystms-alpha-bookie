@@ -38,3 +38,6 @@ jspm_packages
 
 # Truffle stuffle
 build/
+
+# Dapple
+.dapple/
