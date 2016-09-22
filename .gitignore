@@ -38,3 +38,7 @@ jspm_packages
 
 # Truffle stuffle
 build/
+
+# ide
+.idea/
+*.iml
