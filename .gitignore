@@ -42,3 +42,6 @@ build/
 # ide
 .idea/
 *.iml
+
+# Dapple
+.dapple/
