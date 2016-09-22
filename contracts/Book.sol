@@ -29,7 +29,7 @@ contract Book {
             Bet bet = bets[i];
             if (bet.bettingOn == outcome) {
                 uint amount = potSize * bet.amount / amountsByOutcome[outcome];
-                bet.bettor.send(amount);
+                if( ! bet.bettor.send(amount) ) throw;
             }
         }
     }
