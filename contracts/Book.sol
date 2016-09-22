@@ -11,9 +11,17 @@ contract Book {
     mapping(bytes32 => uint) amountsByOutcome;
     uint potSize;
 
-    function Book(bytes32[] outcomes) {
+    function Book() {
         bookmaker = msg.sender;
-        //possibleOutcomes = outcomes;
+    }
+
+//    function Book(bytes32[] outcomes) {
+//        bookmaker = msg.sender;
+//        possibleOutcomes = outcomes;
+//    }
+
+    function setOutcomes(bytes32[] outcomes) {
+        possibleOutcomes = outcomes;
     }
 
     function bet(bytes32 outcome) {
