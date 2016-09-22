@@ -15,4 +15,12 @@ contract WagerTest is Test {
     function testBookmakerShouldBeCreator() {
         assertEq(address(this), wager._bookmaker());
     }
+    
+    function testAddBetShouldSucceedWhileUndefinedBetsRemain() {
+        assertEq(uint(0), uint(wager.addBet("Winter", 64)));
+        assertEq(uint(0), uint(wager.addBet("Spring", 64)));
+        assertEq(uint(0), uint(wager.addBet("Summer", 64)));
+        assertEq(uint(0), uint(wager.addBet("Fall", 64)));
+        assertEq(uint(2), uint(wager.addBet("Bang", 64)));
+    }
 }

@@ -1,3 +1,5 @@
+//pragma solidity ^0.4.1;
+
 contract Wager {
     
     struct Punter {
@@ -21,11 +23,11 @@ contract Wager {
         betsDefined = 0;
     }
 
-    function _bookmaker() constant returns (address _bookmaker) {
+    function _bookmaker() constant returns (address) {
         return bookmaker;
     }
 
-    function validateBet (address sender) private constant returns (uint8 status) {
+    function validateBet (address sender) private constant returns (uint8) {
         if (msg.sender != bookmaker) {
             return 1;
         }
@@ -35,12 +37,13 @@ contract Wager {
         return 0;
     }
 
-    function addBet (string _outcome, uint8 initialOdds) {
-        uint8 status = validateBet (msg.sender);
+    function addBet (string _outcome, uint8 initialOdds) returns (uint8) {
+        var status = validateBet (msg.sender);
         if (status == 0) {
             bets[betsDefined] = Bet (_outcome, initialOdds);
             betsDefined++;
         }
+        return status;
     }
 
     function adjustOdds (string _outcome, uint8 newOdds) {
